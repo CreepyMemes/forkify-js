@@ -1,4 +1,4 @@
-import iconsPath from '../img/icons.svg';
+import iconsPath from '../../img/icons.svg';
 
 function Icon({ iconClass = '', iconName }) {
   return /* html */ `

@@ -1,4 +1,4 @@
-import Icon from './Icon';
+import Icon from '../common/Icon';
 
 function RecipeIngredient({ ingredient }) {
   return /* html */ `
