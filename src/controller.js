@@ -63,4 +63,4 @@ render(
   recipeContainer,
 );
 
-window.addEventListener('hashchange', showRecipe);
+['hashchange', 'load'].forEach((event) => window.addEventListener(event, showRecipe));
