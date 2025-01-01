@@ -1,42 +1,5 @@
-import { camelizeKeys } from './utils/helpers';
-import { render } from './utils/helpers';
-
-import Spinner from './components/common/Spinner';
-import Message from './components/common/Message';
-import ErrorMessage from './components/common/ErrorMessage';
-import Recipe from './components/recipe/Recipe';
-
-const recipeContainer = document.querySelector('.recipe');
-
-// const timeout = function (s) {
-//   return new Promise(function (_, reject) {
-//     setTimeout(function () {
-//       reject(new Error(`Request took too long! Timeout after ${s} second`));
-//     }, s * 1000);
-//   });
-// };
-
-// Utility to fetch and handle API responses
-const fetchAPI = async (url) => {
-  try {
-    const response = await fetch(url);
-    const data = await response.json(); // Parse JSON response
-
-    if (!response.ok) {
-      throw new Error(`${data.message} (${response.status})`);
-    }
-
-    return data;
-  } catch (error) {
-    throw new Error(error.message); // Trow new error for caller to handle
-  }
-};
-
-// Fetch recipe data by ID
-const fetchRecipe = async (recipeId) => {
-  const response = await fetchAPI(`https://forkify-api.jonas.io/api/v2/recipes/${recipeId}`);
-  return await camelizeKeys(response.data.recipe);
-};
+import * as model from './model';
+import view from './view';
 
 // Extract recipe ID from URL hash
 const getRecipeIdFromHash = () => {
@@ -49,18 +12,18 @@ const showRecipe = async () => {
 
   if (!recipeId) return;
 
+  view.renderSpinner();
+
   try {
-    render(Spinner(), recipeContainer);
-    const recipe = await fetchRecipe(recipeId);
-    render(Recipe({ recipe }), recipeContainer);
+    await model.loadRecipe(recipeId);
+    view.renderRecipe({ recipe: model.state.recipe });
   } catch (error) {
-    render(ErrorMessage({ message: error }), recipeContainer);
+    view.renderErrorMessage({ message: error.message });
   }
 };
 
-render(
-  Message({ message: 'Start by searching for a recipe or an ingredient. Have fun!' }),
-  recipeContainer,
-);
-
+// Initialize Event Handlers
 ['hashchange', 'load'].forEach((event) => window.addEventListener(event, showRecipe));
+
+// Initialize Application
+view.renderMessage({ message: 'Start by searching for a recipe or an ingredient. Have fun!' });
