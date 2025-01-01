@@ -1,4 +1,6 @@
 import { camelizeKeys } from './utils/helpers';
+import { render } from './utils/helpers';
+
 import Spinner from './components/common/Spinner';
 import Message from './components/common/Message';
 import ErrorMessage from './components/common/ErrorMessage';
@@ -14,36 +16,51 @@ const recipeContainer = document.querySelector('.recipe');
 //   });
 // };
 
-function render(component, element) {
-  element.innerHTML = component;
-}
+// Utility to fetch and handle API responses
+const fetchAPI = async (url) => {
+  try {
+    const response = await fetch(url);
+    const data = await response.json(); // Parse JSON response
 
-async function showRecipe() {
+    if (!response.ok) {
+      throw new Error(`${data.message} (${response.status})`);
+    }
+
+    return data;
+  } catch (error) {
+    throw new Error(error.message); // Trow new error for caller to handle
+  }
+};
+
+// Fetch recipe data by ID
+const fetchRecipe = async (recipeId) => {
+  const response = await fetchAPI(`https://forkify-api.jonas.io/api/v2/recipes/${recipeId}`);
+  return await camelizeKeys(response.data.recipe);
+};
+
+// Extract recipe ID from URL hash
+const getRecipeIdFromHash = () => {
+  return window.location.hash.slice(1);
+};
+
+// Display recipe in the UI
+const showRecipe = async () => {
+  const recipeId = getRecipeIdFromHash();
+
+  if (!recipeId) return;
+
   try {
     render(Spinner(), recipeContainer);
-
-    const res = await fetch('https://forkify-api.jonas.io/api/v2/recipes/5ed6604591c37cdc054bc886');
-    const data = await res.json();
-
-    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-
-    let { recipe } = data.data;
-    recipe = camelizeKeys(recipe);
-
+    const recipe = await fetchRecipe(recipeId);
     render(Recipe({ recipe }), recipeContainer);
-  } catch (err) {
-    console.log(err);
-
-    render(
-      ErrorMessage({ message: `${err} No recipes found for your query. Please try again!` }),
-      recipeContainer,
-    );
+  } catch (error) {
+    render(ErrorMessage({ message: error }), recipeContainer);
   }
-}
+};
 
 render(
   Message({ message: 'Start by searching for a recipe or an ingredient. Have fun!' }),
   recipeContainer,
 );
 
-showRecipe();
+window.addEventListener('hashchange', showRecipe);
