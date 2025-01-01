@@ -1,6 +1,6 @@
 import { camelCase } from 'lodash';
 
-export function camelizeKeys(obj) {
+export const camelizeKeys = (obj) => {
   if (Array.isArray(obj)) {
     return obj.map((v) => camelizeKeys(v));
   } else if (obj != null && obj.constructor === Object) {
@@ -13,7 +13,12 @@ export function camelizeKeys(obj) {
     );
   }
   return obj;
-}
+};
+
+// Extract recipe ID from URL hash
+export const getRecipeIdFromHash = () => {
+  return window.location.hash.slice(1);
+};
 
 // const timeout = function (s) {
 //   return new Promise(function (_, reject) {

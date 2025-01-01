@@ -20,6 +20,7 @@
     "vite-plugin-eslint": "^1.8.1"
   },
   "dependencies": {
+    "fracty": "^1.0.12",
     "lodash": "^4.17.21"
   }
 }

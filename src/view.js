@@ -4,6 +4,8 @@ import ErrorMessage from './components/common/ErrorMessage';
 import Recipe from './components/recipe/Recipe';
 
 class View {
+  // _data;
+
   constructor() {
     // Initialize the DOM selectors
     this._recipeContainer = document.querySelector('.recipe');
@@ -14,6 +16,10 @@ class View {
     this._spinnerComponent = new Spinner(this._recipeContainer);
     this._recipeComponent = new Recipe(this._recipeContainer);
   }
+
+  // update(data) {
+  //   this._data = data;
+  // }
 
   renderMessage({ message }) {
     this._messageComponent.display({ message });
