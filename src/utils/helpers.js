@@ -27,19 +27,14 @@ const timeout = (seconds) => {
 
 // Utility function to fetch the API, handle any response error return it in JSON
 export const getJSON = async (url) => {
-  try {
-    const response = await Promise.race([fetch(url), timeout(import.meta.env.VITE_TIMEOUT_SEC)]);
-    const data = await response.json(); // Parse JSON response
+  const response = await Promise.race([fetch(url), timeout(import.meta.env.VITE_TIMEOUT_SEC)]);
+  const data = await response.json(); // Parse JSON response
 
-    if (!response.ok) {
-      throw new Error(`${data.message} (${response.status})`);
-    }
-
-    return data;
-  } catch (error) {
-    console.error(error);
-    throw error;
+  if (!response.ok) {
+    throw new Error(`${data.message} (${response.status})`);
   }
+
+  return data;
 };
 
 // Extract recipe ID from URL hash
