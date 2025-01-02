@@ -1,6 +1,6 @@
-<div align="center"><img src = "https://user-images.githubusercontent.com/31413093/197097625-5b3bd3cf-2bd6-4a3a-8059-a1fe9f28100b.svg" height="100px" alt="My Happy SVG"/></div>
+<div align="center"><img src = "https://raw.githubusercontent.com/CreepyMemes/forkify-js/refs/heads/main/src/img/logo.png" height="100px" alt="My Happy SVG"/></div>
 
-<h2 align="center">Simple vite js template</h2>
+<h2 align="center">Forkify Project</h2>
 
 <div align="center">
 
@@ -14,26 +14,10 @@
 
 ## Introduction
 
-This simple project template inclues the following dev dependancies:
-
-- [Vite](https://vite.dev/)
-- [ESLint](https://eslint.org/)
-- [Prettier](https://prettier.io/)
+This is a vanilla js project based on MVC architecture and uses publish-subscribe design pattern for handling events
 
 > [!IMPORTANT]
-> As this template depends on [Vite](https://vite.dev/) v6+ which requires [Node.js](https://nodejs.org/) version 20+
-
-## Downloading
-
-> [!IMPORTANT]
-> To download a copy of this repository and initiallize it for your own project make sure the tool [tiged](https://github.com/tiged/tiged) is installed first
-
-If tiged is already installed run the following command:
-
-```sh
-tiged creepymemes/simple-vite-js-template my-project
-cd my-project
-```
+> add `.env.local` file with your api key
 
 ## Installation
 
