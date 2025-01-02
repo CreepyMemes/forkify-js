@@ -14,7 +14,7 @@ const controlRecipies = async () => {
     await model.loadRecipe(recipeId);
 
     view.recipe.render({ recipe: model.state.recipe });
-  } catch (_) {
+  } catch {
     view.errorMessage.render();
   }
 };
