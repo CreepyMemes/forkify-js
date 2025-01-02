@@ -14,15 +14,15 @@ const controlRecipies = async () => {
     await model.loadRecipe(recipeId);
 
     view.recipe.render({ recipe: model.state.recipe });
-  } catch (error) {
-    view.errorMessage.render({ message: error });
+  } catch (_) {
+    view.errorMessage.render();
   }
 };
 
 // Initialize Application
 const init = () => {
   view.recipe.subscribe(controlRecipies);
-  view.message.render({ message: 'Start by searching for a recipe or an ingredient. Have fun!' });
+  view.message.render();
 };
 
 init();

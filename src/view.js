@@ -21,14 +21,18 @@ class View {
   //   this._data = data;
   // }
   message = {
-    render: ({ message }) => {
-      this._messageComponent.display({ message });
+    render: () => {
+      this._messageComponent.display({
+        message: 'Start by searching for a recipe or an ingredient. Have fun!',
+      });
     },
   };
 
   errorMessage = {
-    render: ({ message }) => {
-      this._errorMessageComponent.display({ message });
+    render: () => {
+      this._errorMessageComponent.display({
+        message: 'We could not find that recipe. Please try another one!',
+      });
     },
   };
 
