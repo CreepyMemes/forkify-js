@@ -33,7 +33,6 @@ export const getJSON = async (url) => {
   if (!response.ok) {
     throw new Error(`${data.message} (${response.status})`);
   }
-
   return data;
 };
 

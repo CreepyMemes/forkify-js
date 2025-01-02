@@ -14,8 +14,19 @@ const controlRecipies = async () => {
     await model.loadRecipe(recipeId);
 
     view.recipe.render({ recipe: model.state.recipe });
-  } catch {
+  } catch (error) {
     view.errorMessage.render();
+    console.log(error);
+  }
+};
+
+const controlSearchResults = async () => {
+  try {
+    await model.loadSearch('pizza');
+
+    view.searchResults.render({ recipes: model.state.recipes });
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -23,6 +34,8 @@ const controlRecipies = async () => {
 const init = () => {
   view.recipe.subscribe(controlRecipies);
   view.message.render();
+
+  controlSearchResults();
 };
 
 init();
