@@ -15,7 +15,7 @@ const controlRecipies = async () => {
 
     view.renderRecipe({ recipe: model.state.recipe });
   } catch (error) {
-    view.renderErrorMessage({ message: error.message });
+    view.renderErrorMessage({ message: error });
   }
 };
 

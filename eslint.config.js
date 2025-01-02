@@ -27,6 +27,7 @@ export default [
     rules: {
       ...js.configs.recommended.rules,
       'no-unused-vars': 'warn',
+      'no-useless-catch': 'warn',
     },
   },
 
