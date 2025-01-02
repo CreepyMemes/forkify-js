@@ -16,6 +16,7 @@ export const camelizeKeys = (obj) => {
   return obj;
 };
 
+// Unitily funtion to generate a reject promise after passed amount of seconds
 const timeout = (seconds) => {
   return new Promise(function (_, reject) {
     setTimeout(() => {
