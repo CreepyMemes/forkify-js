@@ -20,22 +20,35 @@ class View {
   // update(data) {
   //   this._data = data;
   // }
+  message = {
+    render: ({ message }) => {
+      this._messageComponent.display({ message });
+    },
+  };
 
-  renderMessage({ message }) {
-    this._messageComponent.display({ message });
-  }
+  errorMessage = {
+    render: ({ message }) => {
+      this._errorMessageComponent.display({ message });
+    },
+  };
 
-  renderErrorMessage({ message }) {
-    this._errorMessageComponent.display({ message });
-  }
+  spinner = {
+    render: () => {
+      this._spinnerComponent.display();
+    },
+  };
 
-  renderSpinner() {
-    this._spinnerComponent.display();
-  }
+  recipe = {
+    render: ({ recipe }) => {
+      this._recipeComponent.display({ recipe });
+    },
 
-  renderRecipe({ recipe }) {
-    this._recipeComponent.display({ recipe });
-  }
+    subscribe: (handler) => {
+      ['hashchange', 'load'].forEach((event) =>
+        this._recipeComponent.publish(event, handler, window),
+      );
+    },
+  };
 }
 
 export default new View();

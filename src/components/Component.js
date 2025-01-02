@@ -6,6 +6,10 @@ class Component {
     this.#parentElement = parentElement;
   }
 
+  publish(event, handler, element = this.#parentElement) {
+    element.addEventListener(event, handler);
+  }
+
   display(state) {
     // Use the class's constructor to access the static `render` method
     if (typeof this.constructor.render !== 'function') {

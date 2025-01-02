@@ -4,6 +4,9 @@ import RecipeDetails from './RecipeDetails';
 import RecipeIngredients from './RecipeIngredients';
 import RecipeDirections from './RecipeDirections';
 
+// Initialize Event Handlers
+// ['hashchange', 'load'].forEach((event) => window.addEventListener(event, controlRecipies));
+
 class Recipe extends Component {
   static render({ recipe }) {
     return /* html */ `

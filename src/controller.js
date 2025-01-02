@@ -8,19 +8,21 @@ const controlRecipies = async () => {
 
   if (!recipeId) return;
 
-  view.renderSpinner();
+  view.spinner.render();
 
   try {
     await model.loadRecipe(recipeId);
 
-    view.renderRecipe({ recipe: model.state.recipe });
+    view.recipe.render({ recipe: model.state.recipe });
   } catch (error) {
-    view.renderErrorMessage({ message: error });
+    view.errorMessage.render({ message: error });
   }
 };
 
-// Initialize Event Handlers
-['hashchange', 'load'].forEach((event) => window.addEventListener(event, controlRecipies));
-
 // Initialize Application
-view.renderMessage({ message: 'Start by searching for a recipe or an ingredient. Have fun!' });
+const init = () => {
+  view.recipe.subscribe(controlRecipies);
+  view.message.render({ message: 'Start by searching for a recipe or an ingredient. Have fun!' });
+};
+
+init();
