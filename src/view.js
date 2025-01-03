@@ -3,6 +3,7 @@ import Message from './components/common/Message';
 import ErrorMessage from './components/common/ErrorMessage';
 import Recipe from './components/recipe/Recipe';
 import SearchResults from './components/search-results/SearchResults';
+import Search from './components/search/Search';
 
 class View {
   // _data;
@@ -11,6 +12,7 @@ class View {
     // Initialize the DOM selectors
     this._recipeContainer = document.querySelector('.recipe');
     this._searchResultsContainer = document.querySelector('.search-container');
+    this._searchContainer = document.querySelector('.search');
 
     // Initialize the View components
     this._messageComponent = new Message(this._recipeContainer);
@@ -19,6 +21,7 @@ class View {
     this._recipeComponent = new Recipe(this._recipeContainer);
 
     this._searchResultsComponent = new SearchResults(this._searchResultsContainer);
+    this._searchComponent = new Search(this._searchContainer);
   }
 
   // update(data) {
@@ -56,6 +59,11 @@ class View {
     },
   };
 
+  search = {
+    render: () => {
+      this._searchComponent.display();
+    },
+  };
   searchResults = {
     render: ({ results }) => {
       this._searchResultsComponent.display({ results });

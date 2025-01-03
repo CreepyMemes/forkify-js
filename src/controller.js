@@ -20,6 +20,10 @@ const controlRecipies = async () => {
   }
 };
 
+const controlSearch = () => {
+  view.search.render();
+};
+
 const controlSearchResults = async () => {
   try {
     await model.loadSearchResults('pizza');
@@ -35,6 +39,7 @@ const init = () => {
   view.recipe.subscribe(controlRecipies);
   view.message.render();
 
+  controlSearch();
   controlSearchResults();
 };
 
