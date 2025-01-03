@@ -2,7 +2,7 @@ import Component from '../Component';
 import Icon from '../common/Icon';
 
 class RecipeDirections extends Component {
-  static render({ recipe }) {
+  static markup({ recipe }) {
     return /* html */ `
       <div class="recipe__directions">
         <h2 class="heading--2">How to cook it</h2>
@@ -17,7 +17,7 @@ class RecipeDirections extends Component {
           target="_blank"
         >
           <span>Directions</span>
-          ${Icon.render({ iconClass: 'search__icon', iconName: 'icon-arrow-right' })}
+          ${Icon.markup({ iconClass: 'search__icon', iconName: 'icon-arrow-right' })}
         </a>
       </div>
     `;

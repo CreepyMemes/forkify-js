@@ -1,22 +1,20 @@
 class Component {
-  #parentElement;
-
-  constructor(parentElement) {
-    if (!parentElement) throw new Error('A parent element must be specified.');
-    this.#parentElement = parentElement;
-  }
-
-  publish(event, handler, element = this.#parentElement) {
-    element.addEventListener(event, handler);
-  }
-
-  display(state) {
-    // Use the class's constructor to access the static `render` method
-    if (typeof this.constructor.render !== 'function') {
-      throw new Error('Static render method must be implemented in the child class.');
+  constructor(container) {
+    if (!container) {
+      throw new Error('Container element is required.');
     }
+    this.container = container;
+  }
 
-    this.#parentElement.innerHTML = this.constructor.render(state);
+  render(props) {
+    if (typeof this.constructor.markup !== 'function') {
+      throw new Error('Static markup generator method must be implemented in the child class.');
+    }
+    this.container.innerHTML = this.constructor.markup(props);
+  }
+
+  _subscribe(event, handler, target = this.container) {
+    target.addEventListener(event, handler);
   }
 }
 

@@ -1,7 +1,7 @@
 import Component from '../Component';
 
 class RecipeFigure extends Component {
-  static render({ recipe }) {
+  static markup({ recipe }) {
     return /* html */ `
       <figure class="recipe__fig">
         <img src="${recipe.imageUrl}" alt="${recipe.title}" class="recipe__img" />

@@ -2,11 +2,11 @@ import Component from '../Component';
 import Icon from './Icon';
 
 class ErrorMessage extends Component {
-  static render({ message }) {
+  static markup({ message }) {
     return /* html */ `
       <div class="error">
         <div>
-          ${Icon.render({ iconName: 'icon-alert-triangle' })}
+          ${Icon.markup({ iconName: 'icon-alert-triangle' })}
         </div>
         <p>${message}</p>
       </div>

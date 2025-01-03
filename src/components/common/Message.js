@@ -2,11 +2,11 @@ import Component from '../Component';
 import Icon from './Icon';
 
 class Message extends Component {
-  static render({ message }) {
+  static markup({ message }) {
     return /* html */ `
       <div class="message">
         <div>
-          ${Icon.render({ iconName: 'icon-smile' })}
+          ${Icon.markup({ iconName: 'icon-smile' })}
         </div>
         <p>${message}</p>
       </div>

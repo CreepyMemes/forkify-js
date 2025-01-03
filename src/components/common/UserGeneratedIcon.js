@@ -2,10 +2,10 @@ import Component from '../Component';
 import Icon from './Icon';
 
 class UserGeneratedIcon extends Component {
-  static render({ iconClass }) {
+  static markup({ iconClass }) {
     return /* html */ `
       <div class="${iconClass}__user-generated">
-        ${Icon.render({ iconName: 'icon-user' })}
+        ${Icon.markup({ iconName: 'icon-user' })}
       </div>
     `;
   }

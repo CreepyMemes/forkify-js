@@ -2,10 +2,10 @@ import Component from '../Component';
 import Icon from './Icon';
 
 class Spinner extends Component {
-  static render() {
+  static markup() {
     return /* html */ `
       <div class="spinner">
-        ${Icon.render({ iconName: 'icon-loader' })}
+        ${Icon.markup({ iconName: 'icon-loader' })}
       </div>
     `;
   }
