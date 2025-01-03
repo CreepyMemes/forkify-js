@@ -30,7 +30,7 @@ const controlSearchResults = async (query) => {
 };
 
 const controlSearch = () => {
-  const query = view.search.getQuery();
+  const query = view.search.getQuery().trim();
   if (!query) return;
   controlSearchResults(query);
 };

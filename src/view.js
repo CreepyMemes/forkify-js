@@ -96,7 +96,7 @@ class View {
 
       errorMessage: {
         render: () => {
-          this.searchResults._errorMessage.display({ message: 'Bad search query!' });
+          this.searchResults._errorMessage.display({ message: 'No recipes found for your query! Please try again ;)' });
         },
       },
 

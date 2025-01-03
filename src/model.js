@@ -25,6 +25,9 @@ export const loadSearchResults = async function (query) {
 
   try {
     const data = await getJSON(`${import.meta.env.VITE_API_URL}?search=${query}&key=${import.meta.env.VITE_API_KEY}`);
+
+    if (!data.results) throw new Error('Invalid search query');
+
     state.search.results = await camelizeKeys(data.data.recipes);
   } catch (error) {
     console.error(error);
