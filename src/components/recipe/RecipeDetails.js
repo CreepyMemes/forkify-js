@@ -27,11 +27,13 @@ class RecipeDetails extends Component {
           </div>
         </div>
 
-        ${recipe.key ? UserGeneratedIcon.render({ iconClass: 'recipe' }) : ''}
-        
-        <button class="btn--round">
-          ${Icon.render({ iconName: 'icon-bookmark-fill' })}
-        </button>
+        <div class="recipe__icons-container">
+          ${recipe.key ? UserGeneratedIcon.render({ iconClass: 'recipe' }) : ''}
+          
+          <button class="btn--round">
+            ${Icon.render({ iconName: 'icon-bookmark-fill' })}
+          </button>
+        </div>
       </div>
     `;
   }

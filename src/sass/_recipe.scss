@@ -1,5 +1,5 @@
-@use "sass:color";
-@use "base";
+@use 'sass:color';
+@use 'base';
 
 .recipe {
   background-color: base.$color-grey-light-1;
@@ -20,11 +20,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      background-image: linear-gradient(
-        to right bottom,
-        base.$color-grad-1,
-        base.$color-grad-2
-      );
+      background-image: linear-gradient(to right bottom, base.$color-grad-1, base.$color-grad-2);
       opacity: 0.6;
     }
   }
@@ -53,11 +49,7 @@
       -webkit-box-decoration-break: clone;
       box-decoration-break: clone;
       padding: 1.3rem 2rem;
-      background-image: linear-gradient(
-        to right bottom,
-        base.$color-grad-1,
-        base.$color-grad-2
-      );
+      background-image: linear-gradient(to right bottom, base.$color-grad-1, base.$color-grad-2);
     }
 
     @media only screen and (max-width: base.$bp-medium) {
@@ -102,6 +94,13 @@
     transform: translateY(-1px);
   }
 
+  &__icons-container {
+    display: flex;
+
+    margin-left: auto;
+    align-items: center;
+  }
+
   &__user-generated {
     background-color: color.adjust(base.$color-grey-light-2, $lightness: -2%);
 
@@ -112,7 +111,6 @@
     width: 4rem;
     border-radius: 10rem;
 
-    margin-left: auto;
     margin-right: 1.75rem;
 
     svg {
