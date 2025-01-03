@@ -2,6 +2,7 @@ import { camelizeKeys, getJSON } from './utils/helpers';
 
 export const state = {
   recipe: {},
+  recipes: {},
 };
 
 // Fetch recipe data by ID
@@ -11,9 +12,7 @@ export const loadRecipe = async function (recipeId) {
 };
 
 // Fetch recipe results by search keyword
-export const loadSearch = async function (search) {
-  const data = await getJSON(
-    `${import.meta.env.VITE_API_URL}?search=${search}&key=331467e9-2f05-436f-814a-dea18fafd5ab`,
-  );
+export const loadSearchResults = async function (query) {
+  const data = await getJSON(`${import.meta.env.VITE_API_URL}?search=${query}&key=${import.meta.env.VITE_API_KEY}`);
   state.recipes = await camelizeKeys(data.data.recipes);
 };

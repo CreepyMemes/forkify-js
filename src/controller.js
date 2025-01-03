@@ -22,7 +22,7 @@ const controlRecipies = async () => {
 
 const controlSearchResults = async () => {
   try {
-    await model.loadSearch('pizza');
+    await model.loadSearchResults('pizza');
 
     view.searchResults.render({ recipes: model.state.recipes });
   } catch (error) {
