@@ -9,7 +9,7 @@ class RecipeDirections extends Component {
         <p class="recipe__directions-text">
           This recipe was carefully designed and tested by
           <span class="recipe__publisher">${recipe.publisher}</span>. 
-          Please check outdirections at their website.
+          Please check out directions at their website.
         </p>
         <a
           class="btn--small recipe__btn"
