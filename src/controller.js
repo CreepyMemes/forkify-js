@@ -3,36 +3,35 @@ import view from './view';
 
 // Display recipe in the UI
 const controlRecipies = async () => {
-  const recipeId = view.recipe.recipeId();
-
+  const recipeId = view.recipe.getId();
   if (!recipeId) return;
 
-  view.spinner.render();
+  view.recipe.spinner.render();
 
   try {
     await model.loadRecipe(recipeId);
 
     view.recipe.render({ recipe: model.state.recipe });
   } catch {
-    view.errorMessage.render();
+    view.recipe.errorMessage.render();
   }
 };
 
 const controlSearchResults = async (query) => {
+  view.searchResults.spinner.render();
+
   try {
     await model.loadSearchResults(query);
 
     view.searchResults.render({ results: model.state.search.results });
   } catch {
-    console.log('ok');
+    view.searchResults.errorMessage.render();
   }
 };
 
 const controlSearch = () => {
-  const query = view.search.query();
-
+  const query = view.search.getQuery();
   if (!query) return;
-
   controlSearchResults(query);
 };
 
@@ -40,8 +39,6 @@ const controlSearch = () => {
 const init = () => {
   view.recipe.subscribe(controlRecipies);
   view.search.subscribe(controlSearch);
-
-  view.message.render();
 };
 
 init();
