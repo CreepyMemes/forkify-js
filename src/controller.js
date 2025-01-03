@@ -1,6 +1,7 @@
 import * as model from './model';
 import view from './view';
 import { getRecipeIdFromHash } from './utils/helpers';
+import { values } from 'lodash';
 
 // Display recipe in the UI
 const controlRecipies = async () => {
@@ -16,7 +17,6 @@ const controlRecipies = async () => {
     view.recipe.render({ recipe: model.state.recipe });
   } catch (error) {
     view.errorMessage.render();
-    console.log(error);
   }
 };
 
@@ -26,7 +26,7 @@ const controlSearchResults = async () => {
 
     view.searchResults.render({ results: model.state.search.results });
   } catch (error) {
-    console.log(error);
+    console.log('ok');
   }
 };
 
