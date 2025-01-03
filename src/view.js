@@ -11,7 +11,7 @@ class View {
   constructor() {
     // Initialize the DOM selectors
     this._recipeContainer = document.querySelector('.recipe');
-    this._searchResultsContainer = document.querySelector('.search-container');
+    this._searchResultsContainer = document.querySelector('.search-results-container');
     this._searchContainer = document.querySelector('.search');
 
     // Initialize the View components
@@ -22,6 +22,9 @@ class View {
 
     this._searchResultsComponent = new SearchResults(this._searchResultsContainer);
     this._searchComponent = new Search(this._searchContainer);
+
+    // Initial render of static components
+    this.search.render();
   }
 
   // update(data) {
@@ -63,7 +66,16 @@ class View {
     render: () => {
       this._searchComponent.display();
     },
+
+    subscribe: (handler) => {
+      this._searchComponent.publish('click', handler, this._searchContainer.querySelector('.search__btn'));
+    },
+
+    query: () => {
+      return this._searchContainer.querySelector('.search__field').value;
+    },
   };
+
   searchResults = {
     render: ({ results }) => {
       this._searchResultsComponent.display({ results });

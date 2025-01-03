@@ -20,13 +20,9 @@ const controlRecipies = async () => {
   }
 };
 
-const controlSearch = () => {
-  view.search.render();
-};
-
-const controlSearchResults = async () => {
+const controlSearchResults = async (query) => {
   try {
-    await model.loadSearchResults('pizza');
+    await model.loadSearchResults(query);
 
     view.searchResults.render({ results: model.state.search.results });
   } catch (error) {
@@ -34,13 +30,16 @@ const controlSearchResults = async () => {
   }
 };
 
+const controlSearch = () => {
+  controlSearchResults(view.search.query());
+};
+
 // Initialize Application
 const init = () => {
   view.recipe.subscribe(controlRecipies);
-  view.message.render();
+  view.search.subscribe(controlSearch);
 
-  controlSearch();
-  controlSearchResults();
+  view.message.render();
 };
 
 init();
