@@ -10,7 +10,7 @@ class View {
   constructor() {
     // Initialize the DOM selectors
     this._recipeContainer = document.querySelector('.recipe');
-    this._searchResultsContainer = document.querySelector('.search-results');
+    this._searchResultsContainer = document.querySelector('.search-container');
 
     // Initialize the View components
     this._messageComponent = new Message(this._recipeContainer);
