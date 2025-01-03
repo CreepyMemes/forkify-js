@@ -1,6 +1,6 @@
 import { getRecipeIdFromHash } from '../../utils/helpers';
 import Component from '../Component';
-import SearchPreviewUser from './SearchPreviewUser';
+import UserGeneratedIcon from '../common/UserGeneratedIcon';
 
 class SearchPreview extends Component {
   static render({ recipe }) {
@@ -13,7 +13,7 @@ class SearchPreview extends Component {
           <div class="preview__data">
             <h4 class="preview__title">${recipe.title}</h4>
             <p class="preview__publisher">${recipe.publisher}</p>
-            ${recipe.key ? SearchPreviewUser.render() : ''}
+            ${recipe.key ? UserGeneratedIcon.render({ iconClass: 'preview' }) : ''}
           </div>
         </a>
       </li>

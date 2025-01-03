@@ -1,5 +1,6 @@
 import Component from '../Component';
 import Icon from '../common/Icon';
+import UserGeneratedIcon from '../common/UserGeneratedIcon';
 
 class RecipeDetails extends Component {
   static render({ recipe }) {
@@ -26,9 +27,7 @@ class RecipeDetails extends Component {
           </div>
         </div>
 
-        <div class="recipe__user-generated">
-          ${Icon.render({ iconName: 'icon-user' })}
-        </div>
+        ${recipe.key ? UserGeneratedIcon.render({ iconClass: 'recipe' }) : ''}
         
         <button class="btn--round">
           ${Icon.render({ iconName: 'icon-bookmark-fill' })}
