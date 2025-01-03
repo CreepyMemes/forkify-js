@@ -1,11 +1,9 @@
 import * as model from './model';
 import view from './view';
-import { getRecipeIdFromHash } from './utils/helpers';
-import { values } from 'lodash';
 
 // Display recipe in the UI
 const controlRecipies = async () => {
-  const recipeId = getRecipeIdFromHash();
+  const recipeId = view.recipe.recipeId();
 
   if (!recipeId) return;
 
@@ -15,7 +13,7 @@ const controlRecipies = async () => {
     await model.loadRecipe(recipeId);
 
     view.recipe.render({ recipe: model.state.recipe });
-  } catch (error) {
+  } catch {
     view.errorMessage.render();
   }
 };
@@ -25,13 +23,17 @@ const controlSearchResults = async (query) => {
     await model.loadSearchResults(query);
 
     view.searchResults.render({ results: model.state.search.results });
-  } catch (error) {
+  } catch {
     console.log('ok');
   }
 };
 
 const controlSearch = () => {
-  controlSearchResults(view.search.query());
+  const query = view.search.query();
+
+  if (!query) return;
+
+  controlSearchResults(query);
 };
 
 // Initialize Application
