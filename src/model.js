@@ -7,7 +7,7 @@ export const state = {
 
 // Fetch recipe data by ID
 export const loadRecipe = async function (recipeId) {
-  const data = await getJSON(`${import.meta.env.VITE_API_URL}/${recipeId}`);
+  const data = await getJSON(`${import.meta.env.VITE_API_URL}${recipeId}`);
   state.recipe = await camelizeKeys(data.data.recipe);
 };
 
