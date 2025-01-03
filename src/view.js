@@ -5,6 +5,8 @@ import Recipe from './components/recipe/Recipe';
 import SearchResults from './components/search-results/SearchResults';
 import Search from './components/search/Search';
 
+import { getRecipeIdFromHash } from './utils/helpers';
+
 class View {
   // _data;
 
@@ -60,6 +62,10 @@ class View {
     subscribe: (handler) => {
       ['hashchange', 'load'].forEach((event) => this._recipeComponent.publish(event, handler, window));
     },
+
+    recipeId: () => {
+      return getRecipeIdFromHash();
+    },
   };
 
   search = {
@@ -68,7 +74,10 @@ class View {
     },
 
     subscribe: (handler) => {
-      this._searchComponent.publish('click', handler, this._searchContainer.querySelector('.search__btn'));
+      this._searchComponent.publish('submit', (event) => {
+        event.preventDefault();
+        handler();
+      });
     },
 
     query: () => {
