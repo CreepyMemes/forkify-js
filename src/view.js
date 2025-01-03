@@ -2,7 +2,7 @@ import Spinner from './components/common/Spinner';
 import Message from './components/common/Message';
 import ErrorMessage from './components/common/ErrorMessage';
 import Recipe from './components/recipe/Recipe';
-import SearchResults from './components/search/SearchResults';
+import SearchResults from './components/search-results/SearchResults';
 
 class View {
   // _data;
@@ -52,9 +52,7 @@ class View {
     },
 
     subscribe: (handler) => {
-      ['hashchange', 'load'].forEach((event) =>
-        this._recipeComponent.publish(event, handler, window),
-      );
+      ['hashchange', 'load'].forEach((event) => this._recipeComponent.publish(event, handler, window));
     },
   };
 
