@@ -57,8 +57,8 @@ class View {
   };
 
   searchResults = {
-    render: ({ recipes }) => {
-      this._searchResultsComponent.display({ recipes });
+    render: ({ results }) => {
+      this._searchResultsComponent.display({ results });
     },
   };
 }

@@ -2,10 +2,10 @@ import Component from '../Component';
 import SearchPreview from './SearchPreview';
 
 class SearchResults extends Component {
-  static render({ recipes }) {
+  static render({ results }) {
     return /* html */ `
       <ul class="results">
-        ${recipes.map((recipe) => SearchPreview.render({ recipe })).join('')}
+        ${results.map((recipe) => SearchPreview.render({ recipe })).join('')}
       </ul>
     `;
   }

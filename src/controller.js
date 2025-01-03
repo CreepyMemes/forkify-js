@@ -24,7 +24,7 @@ const controlSearchResults = async () => {
   try {
     await model.loadSearchResults('pizza');
 
-    view.searchResults.render({ recipes: model.state.recipes });
+    view.searchResults.render({ results: model.state.search.results });
   } catch (error) {
     console.log(error);
   }
