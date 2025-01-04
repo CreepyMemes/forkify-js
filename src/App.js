@@ -1,9 +1,9 @@
-import Recipe from './components/recipe/Recipe';
-import SearchResults from './components/search-results/SearchResults';
-import Search from './components/search/Search';
 import Component from './components/Component';
-import Message from './components/common/Message';
 import Header from './components/header/Header';
+import Recipe from './components/recipe/Recipe';
+import Search from './components/search/Search';
+import SearchResults from './components/search-results/SearchResults';
+import Message from './components/common/Message';
 import AddRecipeWindow from './components/add-recipe-window/AddRecipeWindow';
 
 class App extends Component {
