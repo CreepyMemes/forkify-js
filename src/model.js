@@ -46,3 +46,8 @@ export const getSearchResultsPage = function (page = state.search.page) {
 
   return state.search.results.slice(start, end);
 };
+
+// Retrieve the total amount of search results's pages
+export const getTotalPages = function () {
+  return state.search.results.length / state.search.resultsPerPage;
+};

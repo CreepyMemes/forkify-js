@@ -27,8 +27,7 @@ const controlSearchResults = async (query) => {
     app.searchResults.render({ results: model.getSearchResultsPage() });
     app.searchResults.pagination.render({
       page: model.state.search.page,
-      totalResults: model.state.search.results.length,
-      resultsPerPage: model.state.search.resultsPerPage,
+      pages: model.getTotalPages(),
     });
   } catch (error) {
     console.error(error);
