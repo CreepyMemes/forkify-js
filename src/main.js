@@ -24,13 +24,12 @@ const controlSearchResults = async (query) => {
   try {
     await model.loadSearchResults(query);
 
-    app.searchResults.render({ results: model.getSearchResultsPage() });
+    app.searchResults.render({ results: model.getSearchResultsPage(6) });
     app.searchResults.pagination.render({
       page: model.state.search.page,
       pages: model.getTotalPages(),
     });
-  } catch (error) {
-    console.error(error);
+  } catch {
     app.searchResults.errorMessage.render();
   }
 };
