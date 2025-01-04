@@ -7,15 +7,9 @@ import ErrorMessage from '../common/ErrorMessage';
 class SearchResults extends Component {
   constructor(container) {
     super(container);
-    this._spinner = new Spinner(container);
+    this.spinner = new Spinner(container);
+
     this._errorMessage = new ErrorMessage(container);
-
-    this.spinner = {
-      render: () => {
-        this._spinner.render();
-      },
-    };
-
     this.errorMessage = {
       render: () => {
         this._errorMessage.render({ message: 'No recipes found for your query! Please try again ;)' });
