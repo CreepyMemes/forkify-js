@@ -17,6 +17,7 @@ const controlRecipies = async () => {
   }
 };
 
+// Display the search resullts in the UI
 const controlSearchResults = async (query) => {
   app.searchResults.spinner.render();
 
@@ -24,22 +25,29 @@ const controlSearchResults = async (query) => {
     await model.loadSearchResults(query);
 
     app.searchResults.render({ results: model.getSearchResultsPage() });
-  } catch {
+    app.searchResults.pagination.render({
+      page: model.state.search.page,
+      totalResults: model.state.search.results.length,
+      resultsPerPage: model.state.search.resultsPerPage,
+    });
+  } catch (error) {
+    console.error(error);
     app.searchResults.errorMessage.render();
   }
 };
 
+// Take the search query and retrieve search results
 const controlSearch = () => {
   const query = app.search.getQuery().trim();
   if (!query) return;
   controlSearchResults(query);
 };
 
-// Initialize Application
-const init = () => {
-  app.init();
+// Main function
+const main = () => {
+  app.render();
   app.recipe.subscribe(controlRecipies);
   app.search.subscribe(controlSearch);
 };
 
-init();
+main();

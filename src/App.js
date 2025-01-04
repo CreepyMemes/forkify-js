@@ -11,9 +11,9 @@ class App extends Component {
     super(container);
   }
 
-  init() {
+  render() {
     // Hydrate initial page
-    this.render();
+    super.render();
 
     // Initialize sub-components so that they can be rerendered
     this.recipe = new Recipe(document.querySelector('.recipe'));

@@ -1,8 +1,8 @@
 import Component from '../Component';
 import SearchPreview from './SearchPreview';
-import SearchPagination from './SearchPagination';
 import Spinner from '../common/Spinner';
 import ErrorMessage from '../common/ErrorMessage';
+import Pagination from '../pagination/Pagination';
 
 class SearchResults extends Component {
   constructor(container) {
@@ -17,6 +17,11 @@ class SearchResults extends Component {
     };
   }
 
+  render(props) {
+    super.render(props);
+    this.pagination = new Pagination(document.querySelector('.pagination'));
+  }
+
   static markup({ results }) {
     return /* html */ `
       <div class="search-results">
@@ -25,7 +30,7 @@ class SearchResults extends Component {
         </ul>
       </div>
 
-      ${SearchPagination.markup()}
+      <div class="pagination"></div>
     `;
   }
 }

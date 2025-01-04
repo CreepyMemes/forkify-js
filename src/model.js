@@ -6,7 +6,7 @@ export const state = {
     query: '',
     results: [],
     page: 1,
-    resultsPerPage: import.meta.env.VITE_RES_PER_PAGE,
+    resultsPerPage: Number(import.meta.env.VITE_RES_PER_PAGE),
   },
 };
 
