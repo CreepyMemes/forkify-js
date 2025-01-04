@@ -23,7 +23,7 @@ const controlSearchResults = async (query) => {
   try {
     await model.loadSearchResults(query);
 
-    app.searchResults.render({ results: model.state.search.results });
+    app.searchResults.render({ results: model.getSearchResultsPage() });
   } catch {
     app.searchResults.errorMessage.render();
   }
