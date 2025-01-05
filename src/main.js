@@ -24,11 +24,8 @@ const controlSearchResults = async (query) => {
   try {
     await model.loadSearchResults(query);
 
-    app.searchResults.render({ results: model.getSearchResultsPage(6) });
-    app.searchResults.pagination.render({
-      page: model.state.search.page,
-      pages: model.getTotalPages(),
-    });
+    app.searchResults.render({ results: model.getSearchResultsPage() });
+    app.pagination.render({ page: model.state.search.page, pages: model.getTotalPages() });
   } catch {
     app.searchResults.errorMessage.render();
   }
@@ -41,11 +38,17 @@ const controlSearch = () => {
   controlSearchResults(query);
 };
 
+// todo
+const controlPagination = () => {
+  console.log('Pag controller');
+};
+
 // Main function
 const main = () => {
   app.render();
   app.recipe.subscribe(controlRecipies);
   app.search.subscribe(controlSearch);
+  app.pagination.subscribe(controlPagination);
 };
 
 main();

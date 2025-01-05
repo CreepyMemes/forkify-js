@@ -5,6 +5,7 @@ import Search from './components/search/Search';
 import SearchResults from './components/search-results/SearchResults';
 import Message from './components/common/Message';
 import AddRecipeWindow from './components/add-recipe-window/AddRecipeWindow';
+import Pagination from './components/pagination/Pagination';
 
 class App extends Component {
   constructor(container) {
@@ -18,7 +19,8 @@ class App extends Component {
     // Initialize sub-components so that they can be rerendered
     this.recipe = new Recipe(document.querySelector('.recipe'));
     this.search = new Search(document.querySelector('.search'));
-    this.searchResults = new SearchResults(document.querySelector('.search-results-container'));
+    this.searchResults = new SearchResults(document.querySelector('.results'));
+    this.pagination = new Pagination(document.querySelector('.pagination'));
   }
 
   static markup() {
@@ -28,8 +30,9 @@ class App extends Component {
           ${Header.markup()}
         </header>
 
-        <div class="search-results-container">
-          ${Message.markup({ message: 'Search results will be displayed here' })}
+        <div class="search-results">
+          ${SearchResults.markup({ results: [] })}
+          ${Pagination.markup({ page: 0, pages: 0 })}
         </div>
 
         <div class="recipe">
