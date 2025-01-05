@@ -42,10 +42,16 @@ const controlPagination = (page) => {
   app.pagination.render({ page: model.state.search.page, pages: model.getTotalPages() });
 };
 
+const controlServings = (servings) => {
+  model.updateServings(servings);
+  app.recipe.render({ recipe: model.state.recipe });
+};
+
 // Main function
 const main = () => {
   app.render();
   app.recipe.subscribe(controlRecipies);
+  app.recipe.subscribeServings(controlServings);
   app.search.subscribe(controlSearch);
   app.pagination.subscribe(controlPagination);
 };

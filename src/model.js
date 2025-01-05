@@ -51,3 +51,12 @@ export const getSearchResultsPage = function (page) {
 export const getTotalPages = function () {
   return Math.ceil(state.search.results.length / state.search.resultsPerPage);
 };
+
+// Update the new ingredients quantity by given servings
+export const updateServings = function (servings) {
+  state.recipe.ingredients.forEach((ingredient) => {
+    ingredient.quantity = ingredient.quantity * (servings / state.recipe.servings);
+  });
+
+  state.recipe.servings = servings;
+};

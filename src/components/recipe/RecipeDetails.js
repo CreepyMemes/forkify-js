@@ -18,10 +18,10 @@ class RecipeDetails extends Component {
           <span class="recipe__info-text">servings</span>
 
           <div class="recipe__info-buttons">
-            <button class="btn--tiny btn--increase-servings">
+            <button data-update-to="${recipe.servings - 1}" class="btn--tiny btn--update-servings">
               ${Icon.markup({ iconName: 'icon-minus-circle' })}
             </button>
-            <button class="btn--tiny btn--increase-servings">
+            <button data-update-to="${recipe.servings + 1}" class="btn--tiny btn--update-servings">
               ${Icon.markup({ iconName: 'icon-plus-circle' })}    
             </button>
           </div>

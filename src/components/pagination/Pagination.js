@@ -16,9 +16,9 @@ class Pagination extends Component {
       const btn = event.target.closest('.btn--inline');
       if (!btn) return;
 
-      const goToPage = Number(btn.dataset.goto);
+      const page = Number(btn.dataset.goto);
 
-      handler(goToPage);
+      handler(page);
     });
   }
 }
