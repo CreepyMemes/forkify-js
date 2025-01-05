@@ -14,8 +14,11 @@ class Pagination extends Component {
   subscribe(handler) {
     this._subscribe('click', (event) => {
       const btn = event.target.closest('.btn--inline');
-      console.log(btn);
-      handler();
+      if (!btn) return;
+
+      const goToPage = Number(btn.dataset.goto);
+
+      handler(goToPage);
     });
   }
 }

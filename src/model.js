@@ -38,7 +38,7 @@ export const loadSearchResults = async function (query) {
 };
 
 // Retrieve the current selected page's search results
-export const getSearchResultsPage = function (page = state.search.page) {
+export const getSearchResultsPage = function (page) {
   state.search.page = page;
 
   const start = (page - 1) * state.search.resultsPerPage;

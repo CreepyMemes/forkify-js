@@ -23,9 +23,7 @@ const controlSearchResults = async (query) => {
 
   try {
     await model.loadSearchResults(query);
-
-    app.searchResults.render({ results: model.getSearchResultsPage() });
-    app.pagination.render({ page: model.state.search.page, pages: model.getTotalPages() });
+    controlPagination(1);
   } catch {
     app.searchResults.errorMessage.render();
   }
@@ -38,9 +36,10 @@ const controlSearch = () => {
   controlSearchResults(query);
 };
 
-// todo
-const controlPagination = () => {
-  console.log('Pag controller');
+// Rerender the selected page and new pagination buttons
+const controlPagination = (page) => {
+  app.searchResults.render({ results: model.getSearchResultsPage(page) });
+  app.pagination.render({ page: model.state.search.page, pages: model.getTotalPages() });
 };
 
 // Main function

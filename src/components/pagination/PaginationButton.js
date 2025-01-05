@@ -11,7 +11,7 @@ class PaginationButton extends Component {
     const spanMarkup = /* html */ `<span>Page ${page}</span>`;
 
     return /* html */ `
-      <button class="btn--inline pagination__btn--${side == 'left' ? 'prev' : 'next'}">
+      <button data-goto="${page}" class="btn--inline pagination__btn--${side == 'left' ? 'prev' : 'next'}">
       ${side === 'left' ? `${iconMarkup}${spanMarkup}` : `${spanMarkup}${iconMarkup}`}
       </button>
     `;
