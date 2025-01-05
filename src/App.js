@@ -19,8 +19,8 @@ class App extends Component {
     // Initialize sub-components so that they can be rerendered
     this.recipe = new Recipe(document.querySelector('.recipe'));
     this.search = new Search(document.querySelector('.search'));
-    this.searchResults = new SearchResults(document.querySelector('.results'));
-    this.pagination = new Pagination(document.querySelector('.pagination'));
+    this.searchResults = new SearchResults(document.querySelector('.search-results-container'));
+    this.pagination = new Pagination(document.querySelector('.pagination-container'));
   }
 
   static markup() {
@@ -31,8 +31,13 @@ class App extends Component {
         </header>
 
         <div class="search-results">
-          ${SearchResults.markup({ results: [] })}
-          ${Pagination.markup({ page: 0, pages: 0 })}
+          <div class="search-results-container">
+            ${SearchResults.markup({ results: [] })}
+          </div>
+          
+          <div class="pagination-container">
+            ${Pagination.markup({ page: 0, pages: 0 })}
+          </div>
         </div>
 
         <div class="recipe">
