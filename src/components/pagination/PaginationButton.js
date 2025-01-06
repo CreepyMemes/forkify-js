@@ -12,7 +12,7 @@ class PaginationButton extends Component {
 
     return /* html */ `
       <button data-goto="${page}" class="btn--inline pagination__btn--${side == 'left' ? 'prev' : 'next'}">
-      ${side === 'left' ? `${iconMarkup}${spanMarkup}` : `${spanMarkup}${iconMarkup}`}
+        ${side === 'left' ? `${iconMarkup}${spanMarkup}` : `${spanMarkup}${iconMarkup}`}
       </button>
     `;
   }

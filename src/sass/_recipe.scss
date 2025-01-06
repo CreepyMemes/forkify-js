@@ -3,6 +3,11 @@
 
 .recipe {
   background-color: base.$color-grey-light-1;
+  height: 100%;
+
+  &-container {
+    grid-area: recipe;
+  }
 
   ///////////
   // FIGURE

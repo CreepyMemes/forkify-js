@@ -1,4 +1,5 @@
 import Component from '../Component';
+import Message from '../common/Message';
 import RecipeFigure from './RecipeFigure';
 import RecipeDetails from './RecipeDetails';
 import RecipeIngredients from './RecipeIngredients';
@@ -22,11 +23,23 @@ class Recipe extends Component {
   }
 
   static markup({ recipe }) {
+    const recipeMarkup = (recipe) => {
+      return /* html */ `
+        ${RecipeFigure.markup({ recipe })}
+        ${RecipeDetails.markup({ recipe })}
+        ${RecipeIngredients.markup({ recipe })}
+        ${RecipeDirections.markup({ recipe })}
+      `;
+    };
+
+    const messageMarkup = () => {
+      return Message.markup({ message: 'Start by searching for a recipe or an ingredient. Have fun!' });
+    };
+
     return /* html */ `
-      ${RecipeFigure.markup({ recipe })}
-      ${RecipeDetails.markup({ recipe })}
-      ${RecipeIngredients.markup({ recipe })}
-      ${RecipeDirections.markup({ recipe })} 
+      <div class="recipe">
+        ${recipe ? recipeMarkup(recipe) : messageMarkup()}
+      </div>
     `;
   }
 

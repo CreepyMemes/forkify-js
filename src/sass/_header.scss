@@ -1,7 +1,12 @@
-@use "base";
+@use 'base';
 
 .header {
-  grid-area: head;
+  height: 100%;
+
+  &-container {
+    grid-area: head;
+  }
+
   background-color: base.$color-grey-light-1;
   display: flex;
   align-items: center;
