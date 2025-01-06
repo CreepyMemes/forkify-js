@@ -8,47 +8,30 @@ import Pagination from './components/pagination/Pagination';
 import CopyRight from './components/common/Copyright';
 
 class App extends Component {
-  constructor(container) {
-    super(container);
-  }
-
   render() {
-    // Hydrate initial page
     super.render();
 
-    // Initialize sub-components so that they can be rerendered
-    this.recipe = new Recipe(document.querySelector('.recipe-container'));
-    this.search = new Search(document.querySelector('.search-container'));
-    this.searchResults = new SearchResults(document.querySelector('.results-container'));
-    this.pagination = new Pagination(document.querySelector('.pagination-container'));
+    this.recipe = new Recipe(this.container.querySelector('.recipe'));
+    this.search = new Search(this.container.querySelector('.search'));
+    this.searchResults = new SearchResults(this.container.querySelector('.results'));
+    this.pagination = new Pagination(this.container.querySelector('.pagination'));
   }
 
   static markup() {
     return /* html */ `
-      <div class="container">
-        <header class="header-container">
+      <div class="root">
+        <div class="container">
           ${Header.markup()}
-        </header>
 
-        <div class="search-results">
-          <div class="results-container">
-            ${SearchResults.markup({ results: [] })}
-          </div>
-          <div class="pagination-container">
+          <div class="search-results">
+            ${SearchResults.markup({ results: null, status: 'idle' })}
             ${Pagination.markup({ page: 0, pages: 0 })}
+            ${CopyRight.markup()}
           </div>
 
-          ${CopyRight.markup()}
+          ${Recipe.markup({ recipe: null, status: 'idle' })}
         </div>
 
-        <div class="recipe-container">
-          ${Recipe.markup({ recipe: undefined })}
-        </div>
-      </div>
-
-      <div class="overlay hidden"></div>
-
-      <div class="add-recipe-window hidden">
         ${AddRecipeWindow.markup()}
       </div>
     `;

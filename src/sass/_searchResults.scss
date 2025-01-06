@@ -11,11 +11,8 @@
   margin-bottom: 2rem;
 }
 
-.pagination-container {
-  margin-top: auto;
-}
-
 .pagination {
+  margin-top: auto;
   padding: 0 3.5rem;
 
   &::after {
@@ -41,7 +38,9 @@
   margin-top: 4rem;
 
   .twitter-link:link,
-  .twitter-link:visited {
+  .twitter-link:visited,
+  .github-link:link,
+  .github-link:visited {
     color: base.$color-grey-dark-2;
   }
 }

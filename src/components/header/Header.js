@@ -16,10 +16,8 @@ class Header extends Component {
       <header class="header">
         <img src="${logoPath}" alt="Logo" class="header__logo" />
 
-        <div class="search-container">
-          ${Search.markup()}
-        </div>
-
+        ${Search.markup()}
+        
         <nav class="nav">
           <ul class="nav__list">
             <li class="nav__item">

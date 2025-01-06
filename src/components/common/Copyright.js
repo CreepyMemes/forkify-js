@@ -4,15 +4,19 @@ class CopyRight extends Component {
   static markup() {
     return /* html */ `
       <p class="copyright">
-        &copy; Copyright by
+        Copyright &copy; ${new Date().getFullYear()} <strong>Forkify-JS</strong> by
         <a
-          class="twitter-link"
+          class="github-link"
           target="_blank"
-          href="https://twitter.com/jonasschmedtman"
-        >Jonas Schmedtmann</a>.
+          href="https://github.com/CreepyMemes/forkify-js"
+        >CreepyMemes</a>.
         
-        Use for learning or your portfolio. Don't use to teach. 
-        Don't claim as your own.
+        Original UI design made by
+        <a
+        class="twitter-link"
+        target="_blank"
+        href="https://twitter.com/jonasschmedtman"
+        >Jonas Schmedtmann</a>.
       </p>
     `;
   }

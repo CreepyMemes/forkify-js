@@ -2,10 +2,6 @@ import Component from '../Component';
 import Icon from '../common/Icon';
 
 class Search extends Component {
-  constructor(container) {
-    super(container);
-  }
-
   static markup() {
     return /* html */ `
       <form class="search">

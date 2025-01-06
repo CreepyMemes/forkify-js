@@ -1,0 +1,4 @@
+Fix having to delegate event listeners to document, 
+by changing Component render method 
+to implement diffing mechanism,
+instead of substituting the entire DOM element

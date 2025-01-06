@@ -10,7 +10,19 @@ class Component {
     if (typeof this.constructor.markup !== 'function') {
       throw new Error('Static markup generator method must be implemented in the child class.');
     }
-    this.container.innerHTML = this.constructor.markup(props);
+
+    // Create a temporary element to parse the HTML string
+    const temp = document.createElement('div');
+    temp.innerHTML = this.constructor.markup(props);
+
+    // Get the new element from the temp container
+    const newElement = temp.firstElementChild;
+
+    // Replace the old container with the new element
+    this.container.replaceWith(newElement);
+
+    // Update the container reference
+    this.container = newElement;
   }
 
   _subscribe(event, handler, target = this.container) {
