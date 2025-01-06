@@ -51,7 +51,7 @@ const controlServings = (servings) => {
 const main = () => {
   app.render();
   app.recipe.subscribe(controlRecipies);
-  app.recipe.subscribeServings(controlServings);
+  app.recipe.details.subscribe(controlServings);
   app.search.subscribe(controlSearch);
   app.pagination.subscribe(controlPagination);
 };
