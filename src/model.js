@@ -24,12 +24,14 @@ export const state = {
 // Update the recipe status state to loading
 export const setRecipeLoadingState = function () {
   state.recipe.status = 'loading';
+  state.recipe.recipe = {};
 };
 
 // Fetch recipe data by ID
 export const loadRecipe = async function (recipeId) {
   try {
     const data = await getJSON(`${import.meta.env.VITE_API_URL}${recipeId}`);
+
     state.recipe.recipe = await camelizeKeys(data.data.recipe);
     state.recipe.status = 'success';
   } catch (error) {
@@ -42,6 +44,9 @@ export const loadRecipe = async function (recipeId) {
 // Update the recipe status state to loading
 export const setSearchLoadingState = function () {
   state.search.search.status = 'loading';
+  state.search.search.results = [];
+  state.search.page.page = 1;
+  state.search.page.pages = 0;
 };
 
 // Fetch recipe results by search keyword
@@ -53,8 +58,8 @@ export const loadSearchResults = async function (query) {
     if (!data.results) throw new Error('Invalid search query');
 
     state.search.results = await camelizeKeys(data.data.recipes);
-    state.search.search.status = 'success';
     state.search.page.pages = getTotalPages();
+    state.search.search.status = 'success';
   } catch (error) {
     state.search.search.status = 'fail';
     state.search.page.pages = 0;

@@ -22,7 +22,7 @@ class Search extends Component {
   }
 
   getQuery() {
-    return this.container.querySelector('.search__field').value;
+    return this.container.querySelector('.search__field').value.trim();
   }
 }
 

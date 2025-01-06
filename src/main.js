@@ -8,6 +8,7 @@ const controlRecipies = async () => {
 
   model.setRecipeLoadingState();
   app.recipe.render(model.state.recipe);
+  app.searchResults.render(model.state.search.search);
 
   try {
     await model.loadRecipe(recipeId);
@@ -19,33 +20,28 @@ const controlRecipies = async () => {
 };
 
 // Display the search resullts in the UI
-const controlSearchResults = async (query) => {
-  const page = 1; // Initial page
+const controlSearchResults = async () => {
+  const query = app.search.getQuery();
+  if (!query) return;
 
   model.setSearchLoadingState();
-  controlPagination(page);
+  app.searchResults.render(model.state.search.search);
+  app.pagination.render(model.state.search.page);
 
   try {
     await model.loadSearchResults(query);
-    controlPagination(page);
+
+    controlPagination(model.state.search.page.page);
   } catch {
-    controlPagination(page);
+    app.searchResults.render(model.state.search.search);
   }
 };
 
 // Rerender the selected page and new pagination buttons
 const controlPagination = (page) => {
   model.updateSearchResultsPage(page);
-
   app.searchResults.render(model.state.search.search);
   app.pagination.render(model.state.search.page);
-};
-
-// Take the search query and retrieve search results
-const controlSearch = () => {
-  const query = app.search.getQuery().trim();
-  if (!query) return;
-  controlSearchResults(query);
 };
 
 // Update the servings quantity in the UI
@@ -59,7 +55,7 @@ const main = () => {
   app.render();
   app.recipe.subscribe(controlRecipies);
   app.recipe.details.subscribe(controlServings);
-  app.search.subscribe(controlSearch);
+  app.search.subscribe(controlSearchResults);
   app.pagination.subscribe(controlPagination);
 };
 
