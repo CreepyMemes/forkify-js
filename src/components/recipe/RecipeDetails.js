@@ -39,19 +39,15 @@ class RecipeDetails extends Component {
   }
 
   subscribe(handler) {
-    this._subscribe(
-      'click',
-      (event) => {
-        const btn = event.target.closest('.btn--update-servings');
-        if (!btn) return;
+    this._subscribe('click', (event) => {
+      const btn = event.target.closest('.btn--update-servings');
+      if (!btn) return;
 
-        const servings = Number(btn.dataset.updateTo);
-        if (servings < 1) return;
+      const servings = Number(btn.dataset.updateTo);
+      if (servings < 1) return;
 
-        handler(servings);
-      },
-      document, // Temporary fix by delegating event listener from document
-    );
+      handler(servings);
+    });
   }
 }
 

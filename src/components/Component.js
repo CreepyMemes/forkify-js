@@ -1,3 +1,5 @@
+import morphdom from 'morphdom';
+
 class Component {
   constructor(container) {
     if (!container) {
@@ -11,18 +13,8 @@ class Component {
       throw new Error('Static markup generator method must be implemented in the child class.');
     }
 
-    // Create a temporary element to parse the HTML string
-    const temp = document.createElement('div');
-    temp.innerHTML = this.constructor.markup(props);
-
-    // Get the new element from the temp container
-    const newElement = temp.firstElementChild;
-
-    // Replace the old container with the new element
-    this.container.replaceWith(newElement);
-
-    // Update the container reference
-    this.container = newElement;
+    // Rerender the element efficiently through built-in diffing algorythm
+    morphdom(this.container, this.constructor.markup(props));
   }
 
   _subscribe(event, handler, target = this.container) {

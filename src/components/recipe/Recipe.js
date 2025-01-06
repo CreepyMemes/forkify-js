@@ -9,12 +9,8 @@ import { getRecipeIdFromHash } from '../../utils/helpers';
 class Recipe extends Component {
   constructor(container) {
     super(container);
-    this.details = new RecipeDetails(this.container); // Temporary
+    this.details = new RecipeDetails(this.container);
   }
-
-  // render(props) {
-  //   super.render(props);
-  // }
 
   static markup({ recipe, status }) {
     return /* html */ `

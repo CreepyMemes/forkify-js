@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "fracty": "^1.0.12",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "morphdom": "^2.7.4"
   }
 }
