@@ -1,4 +1,3 @@
-import { add } from 'lodash';
 import { camelizeKeys, getJSON } from './utils/helpers';
 
 export const state = {
