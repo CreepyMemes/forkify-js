@@ -15,13 +15,14 @@ class App extends Component {
     this.search = new Search(this.container.querySelector('.search'));
     this.searchResults = new SearchResults(this.container.querySelector('.results'));
     this.pagination = new Pagination(this.container.querySelector('.pagination'));
+    this.header = new Header(this.container.querySelector('.header'));
   }
 
   static markup() {
     return /* html */ `
       <div class="root">
         <div class="container">
-          ${Header.markup()}
+          ${Header.markup({ bookmarks: [] })}
 
           <div class="search-results">
             ${SearchResults.markup({ results: null, status: 'idle' })}

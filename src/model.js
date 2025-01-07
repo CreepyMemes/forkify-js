@@ -19,7 +19,9 @@ export const state = {
       pages: 0,
     },
   },
-  bookmarks: [],
+  header: {
+    bookmarks: [],
+  },
 };
 
 // Update the recipe status state to loading
@@ -101,22 +103,22 @@ export const updateServings = function (servings) {
 
 // Return if the passed recipe id is bookmarked
 const isBookmarked = function (recipeId) {
-  return state.bookmarks.some((bookmark) => bookmark.id === recipeId);
+  return state.header.bookmarks.some((bookmark) => bookmark.id === recipeId);
 };
 
 // Update the bookmark array state by adding the passed recipe
 const addBookmark = function (recipe) {
   state.recipe.recipe.bookmarked = true;
-  return [...state.bookmarks, recipe];
+  return [...state.header.bookmarks, recipe];
 };
 
 // Update the bookmark array state by removing the passed recipe id
 const deleteBookmark = function (recipeId) {
   state.recipe.recipe.bookmarked = false;
-  return state.bookmarks.filter((bookmark) => bookmark.id !== recipeId);
+  return state.header.bookmarks.filter((bookmark) => bookmark.id !== recipeId);
 };
 
 // Toggle the saved bookmarks by either adding passed recipe or removing it
 export const Bookmark = function ({ recipe }) {
-  state.bookmarks = isBookmarked(recipe.id) ? deleteBookmark(recipe.id) : addBookmark(recipe);
+  state.header.bookmarks = isBookmarked(recipe.id) ? deleteBookmark(recipe.id) : addBookmark(recipe);
 };

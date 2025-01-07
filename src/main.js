@@ -14,6 +14,7 @@ const controlRecipies = async () => {
     await model.loadRecipe(recipeId);
 
     app.recipe.render(model.state.recipe);
+    app.header.render(model.state.header);
   } catch {
     app.recipe.render(model.state.recipe);
   }
@@ -53,6 +54,7 @@ const controlServings = (servings) => {
 const controlBookmark = () => {
   model.Bookmark(model.state.recipe);
   app.recipe.render(model.state.recipe);
+  app.header.render(model.state.header);
 };
 
 // Main function

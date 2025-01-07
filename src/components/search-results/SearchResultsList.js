@@ -1,10 +1,10 @@
 import Component from '../Component';
-import SearchPreview from './SearchPreview';
+import Preview from '../common/Preview';
 
 class SearchResultsList extends Component {
   static markup({ results }) {
     return /* html */ `
-      ${results.map((recipe) => SearchPreview.markup({ recipe })).join('')}
+      ${results.map((recipe) => Preview.markup({ recipe })).join('')}
     `;
   }
 }

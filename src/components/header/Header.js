@@ -5,7 +5,7 @@ import Search from '../search/Search';
 import HeaderBookmarks from './HeaderBookmarks';
 
 class Header extends Component {
-  static markup() {
+  static markup({ bookmarks }) {
     return /* html */ `
       <header class="header">
         <img src="${logoPath}" alt="Logo" class="header__logo" />
@@ -27,7 +27,7 @@ class Header extends Component {
                 <span>Bookmarks</span>
               </button>
 
-              ${HeaderBookmarks.markup()}
+              ${HeaderBookmarks.markup({ bookmarks })}
             </li>
           </ul>
         </nav>

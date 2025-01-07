@@ -1,8 +1,8 @@
 import { getRecipeIdFromHash } from '../../utils/helpers';
 import Component from '../Component';
-import UserGeneratedIcon from '../common/UserGeneratedIcon';
+import UserGeneratedIcon from './UserGeneratedIcon';
 
-class SearchPreview extends Component {
+class Preview extends Component {
   static markup({ recipe }) {
     return /* html */ `
       <li class="preview">
@@ -21,4 +21,4 @@ class SearchPreview extends Component {
   }
 }
 
-export default SearchPreview;
+export default Preview;
