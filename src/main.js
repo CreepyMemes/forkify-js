@@ -8,13 +8,14 @@ const controlRecipies = async () => {
 
   model.setRecipeLoadingState();
   app.recipe.render(model.state.recipe);
+
   app.searchResults.render(model.state.search.searchResults);
+  app.header.render(model.state.header);
 
   try {
     await model.loadRecipe(recipeId);
 
     app.recipe.render(model.state.recipe);
-    app.header.render(model.state.header);
   } catch {
     app.recipe.render(model.state.recipe);
   }
@@ -51,6 +52,7 @@ const controlServings = (servings) => {
   app.recipe.render(model.state.recipe);
 };
 
+// Update the bookmarks and display them in UI
 const controlBookmark = () => {
   model.Bookmark(model.state.recipe);
   app.recipe.render(model.state.recipe);
