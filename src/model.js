@@ -10,11 +10,11 @@ export const state = {
     query: '',
     results: [],
     resultsPerPage: Number(import.meta.env.VITE_RES_PER_PAGE),
-    search: {
+    searchResults: {
       results: [],
       status: 'idle',
     },
-    page: {
+    pagination: {
       page: 1,
       pages: 0,
     },
@@ -43,10 +43,10 @@ export const loadRecipe = async function (recipeId) {
 
 // Update the recipe status state to loading
 export const setSearchLoadingState = function () {
-  state.search.search.status = 'loading';
-  state.search.search.results = [];
-  state.search.page.page = 1;
-  state.search.page.pages = 0;
+  state.search.searchResults.status = 'loading';
+  state.search.searchResults.results = [];
+  state.search.pagination.page = 1;
+  state.search.pagination.pages = 0;
 };
 
 // Fetch recipe results by search keyword
@@ -58,11 +58,11 @@ export const loadSearchResults = async function (query) {
     if (!data.results) throw new Error('Invalid search query');
 
     state.search.results = await camelizeKeys(data.data.recipes);
-    state.search.page.pages = getTotalPages();
-    state.search.search.status = 'success';
+    state.search.pagination.pages = getTotalPages();
+    state.search.searchResults.status = 'success';
   } catch (error) {
-    state.search.search.status = 'fail';
-    state.search.page.pages = 0;
+    state.search.searchResults.status = 'fail';
+    state.search.pagination.pages = 0;
     console.error(error);
     throw error;
   }
@@ -78,8 +78,8 @@ const getSearchResultsPage = function (page) {
 
 // Update the search results state from passed page
 export const updateSearchResultsPage = function (page) {
-  state.search.search.results = getSearchResultsPage(page);
-  state.search.page.page = page;
+  state.search.searchResults.results = getSearchResultsPage(page);
+  state.search.pagination.page = page;
 };
 
 // Retrieve the total amount of search results's pages

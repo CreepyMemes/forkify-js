@@ -8,7 +8,7 @@ const controlRecipies = async () => {
 
   model.setRecipeLoadingState();
   app.recipe.render(model.state.recipe);
-  app.searchResults.render(model.state.search.search);
+  app.searchResults.render(model.state.search.searchResults);
 
   try {
     await model.loadRecipe(recipeId);
@@ -25,23 +25,23 @@ const controlSearchResults = async () => {
   if (!query) return;
 
   model.setSearchLoadingState();
-  app.searchResults.render(model.state.search.search);
-  app.pagination.render(model.state.search.page);
+  app.searchResults.render(model.state.search.searchResults);
+  app.pagination.render(model.state.search.pagination);
 
   try {
     await model.loadSearchResults(query);
 
-    controlPagination(model.state.search.page.page);
+    controlPagination(model.state.search.pagination.page);
   } catch {
-    app.searchResults.render(model.state.search.search);
+    app.searchResults.render(model.state.search.searchResults);
   }
 };
 
 // Rerender the selected page and new pagination buttons
 const controlPagination = (page) => {
   model.updateSearchResultsPage(page);
-  app.searchResults.render(model.state.search.search);
-  app.pagination.render(model.state.search.page);
+  app.searchResults.render(model.state.search.searchResults);
+  app.pagination.render(model.state.search.pagination);
 };
 
 // Update the servings quantity in the UI
