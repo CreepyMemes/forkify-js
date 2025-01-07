@@ -14,7 +14,15 @@ class Component {
     }
 
     // Rerender the element efficiently through built-in diffing algorythm
-    morphdom(this.container, this.constructor.markup(props));
+    morphdom(this.container, this.constructor.markup(props), {
+      onBeforeElUpdated: (fromEl, toEl) => {
+        if (fromEl.tagName === 'IMG' && fromEl.src !== toEl.src) {
+          fromEl.replaceWith(toEl.cloneNode(true));
+          return false;
+        }
+        return true;
+      },
+    });
   }
 
   _subscribe(event, handler, target = this.container) {
