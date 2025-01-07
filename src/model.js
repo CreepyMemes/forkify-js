@@ -1,3 +1,4 @@
+import { add } from 'lodash';
 import { camelizeKeys, getJSON } from './utils/helpers';
 
 export const state = {
@@ -19,6 +20,7 @@ export const state = {
       pages: 0,
     },
   },
+  bookmarks: [],
 };
 
 // Update the recipe status state to loading
@@ -31,9 +33,10 @@ export const setRecipeLoadingState = function () {
 export const loadRecipe = async function (recipeId) {
   try {
     const data = await getJSON(`${import.meta.env.VITE_API_URL}${recipeId}`);
-
     state.recipe.recipe = await camelizeKeys(data.data.recipe);
     state.recipe.status = 'success';
+
+    state.recipe.recipe.bookmarked = isBookmarked(recipeId);
   } catch (error) {
     state.recipe.status = 'fail';
     console.error(error);
@@ -58,8 +61,9 @@ export const loadSearchResults = async function (query) {
     if (!data.results) throw new Error('Invalid search query');
 
     state.search.results = await camelizeKeys(data.data.recipes);
-    state.search.pagination.pages = getTotalPages();
     state.search.searchResults.status = 'success';
+
+    state.search.pagination.pages = getTotalPages();
   } catch (error) {
     state.search.searchResults.status = 'fail';
     state.search.pagination.pages = 0;
@@ -94,4 +98,26 @@ export const updateServings = function (servings) {
   });
 
   state.recipe.recipe.servings = servings;
+};
+
+// Return if the passed recipe id is bookmarked
+const isBookmarked = function (recipeId) {
+  return state.bookmarks.some((bookmark) => bookmark.id === recipeId);
+};
+
+// Update the bookmark array state by adding the passed recipe
+const addBookmark = function (recipe) {
+  state.recipe.recipe.bookmarked = true;
+  return [...state.bookmarks, recipe];
+};
+
+// Update the bookmark array state by removing the passed recipe id
+const deleteBookmark = function (recipeId) {
+  state.recipe.recipe.bookmarked = false;
+  return state.bookmarks.filter((bookmark) => bookmark.id !== recipeId);
+};
+
+// Toggle the saved bookmarks by either adding passed recipe or removing it
+export const Bookmark = function ({ recipe }) {
+  state.bookmarks = isBookmarked(recipe.id) ? deleteBookmark(recipe.id) : addBookmark(recipe);
 };

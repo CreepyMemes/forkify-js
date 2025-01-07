@@ -50,11 +50,17 @@ const controlServings = (servings) => {
   app.recipe.render(model.state.recipe);
 };
 
+const controlBookmark = () => {
+  model.Bookmark(model.state.recipe);
+  app.recipe.render(model.state.recipe);
+};
+
 // Main function
 const main = () => {
   app.render();
   app.recipe.subscribe(controlRecipies);
-  app.recipe.details.subscribe(controlServings);
+  app.recipe.details.subscribeServings(controlServings);
+  app.recipe.details.subscribeBookmark(controlBookmark);
   app.search.subscribe(controlSearchResults);
   app.pagination.subscribe(controlPagination);
 };

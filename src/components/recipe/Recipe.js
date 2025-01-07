@@ -18,7 +18,7 @@ class Recipe extends Component {
         ${status === 'idle' ? Message.markup({ message: 'Start by searching for a recipe or an ingredient. Have fun!' }) : ''}
         ${status === 'loading' ? Spinner.markup() : ''}
         ${status === 'fail' ? ErrorMessage.markup({ message: 'We could not find that recipe. Please try another one!' }) : ''}
-        ${status === 'success' ? RecipeResult.markup({ recipe: recipe }) : ''}
+        ${status === 'success' ? RecipeResult.markup({ recipe }) : ''}
       </div>
     `;
   }

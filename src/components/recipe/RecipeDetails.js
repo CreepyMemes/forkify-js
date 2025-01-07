@@ -30,15 +30,15 @@ class RecipeDetails extends Component {
         <div class="recipe__icons-container">
           ${recipe.key ? UserGeneratedIcon.markup({ iconClass: 'recipe' }) : ''}
           
-          <button class="btn--round">
-            ${Icon.markup({ iconName: 'icon-bookmark-fill' })}
+          <button class="btn--round btn--bookmark">
+            ${Icon.markup({ iconName: `icon-bookmark${recipe.bookmarked ? '-fill' : ''}` })}
           </button>
         </div>
       </div>
     `;
   }
 
-  subscribe(handler) {
+  subscribeServings(handler) {
     this._subscribe('click', (event) => {
       const btn = event.target.closest('.btn--update-servings');
       if (!btn) return;
@@ -47,6 +47,15 @@ class RecipeDetails extends Component {
       if (servings < 1) return;
 
       handler(servings);
+    });
+  }
+
+  subscribeBookmark(handler) {
+    this._subscribe('click', (event) => {
+      const btn = event.target.closest('.btn--bookmark');
+      if (!btn) return;
+
+      handler();
     });
   }
 }
