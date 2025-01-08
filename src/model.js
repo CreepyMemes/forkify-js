@@ -1,4 +1,5 @@
-import { camelizeKeys, getJSON } from './utils/helpers';
+import { camelizeKeys, getJSON, postJSON } from './utils/helpers';
+const { VITE_API_URL, VITE_API_KEY, VITE_RES_PER_PAGE } = import.meta.env;
 
 export const state = {
   recipe: {
@@ -9,7 +10,7 @@ export const state = {
   search: {
     query: '',
     results: [],
-    resultsPerPage: Number(import.meta.env.VITE_RES_PER_PAGE),
+    resultsPerPage: +VITE_RES_PER_PAGE,
     searchResults: {
       results: [],
       status: 'idle',
@@ -34,11 +35,11 @@ export const setRecipeLoadingState = function () {
   state.recipe.recipe = {};
 };
 
-// Fetch recipe data by ID
+// Fetch recipe response data object by ID
 export const loadRecipe = async function (recipeId) {
   try {
-    const data = await getJSON(`${import.meta.env.VITE_API_URL}${recipeId}`);
-    state.recipe.recipe = await camelizeKeys(data.data.recipe);
+    const response = await getJSON(`${VITE_API_URL}${recipeId}?key=${VITE_API_KEY}`);
+    state.recipe.recipe = await camelizeKeys(response.data.recipe);
     state.recipe.status = 'success';
 
     state.recipe.recipe.bookmarked = isBookmarked(recipeId);
@@ -62,10 +63,10 @@ export const loadSearchResults = async function (query) {
   state.search.query = query;
 
   try {
-    const data = await getJSON(`${import.meta.env.VITE_API_URL}?search=${query}&key=${import.meta.env.VITE_API_KEY}`);
-    if (!data.results) throw new Error('Invalid search query');
+    const response = await getJSON(`${VITE_API_URL}?search=${query}&key=${VITE_API_KEY}`);
+    if (!response.results) throw new Error('Invalid search query');
 
-    state.search.results = await camelizeKeys(data.data.recipes);
+    state.search.results = await camelizeKeys(response.data.recipes);
     state.search.searchResults.status = 'success';
 
     state.search.pagination.pages = getTotalPages();
@@ -128,13 +129,13 @@ const deleteBookmark = function (recipeId) {
 };
 
 // Toggle the saved bookmarks by either adding passed recipe or removing it
-export const Bookmark = function ({ recipe }) {
+export const toggleBookmark = function ({ recipe }) {
   state.header.bookmarks = isBookmarked(recipe.id) ? deleteBookmark(recipe.id) : addBookmark(recipe);
   persistBookmarks();
 };
 
 // Toggles the add recipe visibility state
-export const setToggleRecipeVisible = function () {
+export const toggleAddRecipeVisibility = function () {
   state.addRecipe.visibility = !state.addRecipe.visibility;
 };
 
@@ -171,7 +172,11 @@ const getRecipeObject = function (recipe) {
 export const uploadRecipe = async function (data) {
   try {
     const recipe = getRecipeObject(data);
-    console.log(recipe);
+    const response = await postJSON(`${VITE_API_URL}?key=${VITE_API_KEY}`, recipe);
+    state.recipe.recipe = await camelizeKeys(response.data.recipe);
+    state.recipe.status = 'success';
+
+    state.recipe.recipe.bookmarked = true;
   } catch (error) {
     console.error(error);
     throw error;

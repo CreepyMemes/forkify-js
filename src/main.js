@@ -54,14 +54,14 @@ const controlServings = (servings) => {
 
 // Update the bookmarks and display them in UI
 const controlBookmark = () => {
-  model.Bookmark(model.state.recipe);
+  model.toggleBookmark(model.state.recipe);
   app.recipe.render(model.state.recipe);
   app.header.render(model.state.header);
 };
 
 // Toggles the add recipe popup visibility and rerenders it
 const controlToggleAddRecipe = () => {
-  model.setToggleRecipeVisible();
+  model.toggleAddRecipeVisibility();
   app.addRecipe.render(model.state.addRecipe);
 };
 
@@ -69,6 +69,11 @@ const controlToggleAddRecipe = () => {
 const controlAddRecipe = async (data) => {
   try {
     await model.uploadRecipe(data);
+
+    window.history.pushState(null, '', `#${model.state.recipe.recipe.id}`);
+    app.recipe.render(model.state.recipe);
+    controlToggleAddRecipe();
+    controlBookmark();
   } catch (error) {
     alert(error);
   }

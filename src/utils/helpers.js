@@ -25,9 +25,23 @@ const timeout = (seconds) => {
   });
 };
 
-// Utility function to fetch the API, handle any response error return it in JSON
+// Utility function to fetch the API in JSON, and handles any response error
 export const getJSON = async (url) => {
   const response = await Promise.race([fetch(url), timeout(import.meta.env.VITE_TIMEOUT_SEC)]);
+  const data = await response.json(); // Parse JSON response
+
+  if (!response.ok) {
+    throw new Error(`${data.message} (${response.status})`);
+  }
+  return data;
+};
+
+// Utility function to post an object to the API, and handles any response error
+export const postJSON = async (url, body) => {
+  const response = await Promise.race([
+    fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }),
+    timeout(import.meta.env.VITE_TIMEOUT_SEC),
+  ]);
   const data = await response.json(); // Parse JSON response
 
   if (!response.ok) {
