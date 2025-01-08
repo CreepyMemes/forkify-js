@@ -2,7 +2,10 @@
 
 <h2 align="center">Forkify Project</h2>
 
+
 <div align="center">
+  
+[![pages-build-deployment](https://github.com/CreepyMemes/forkify-js/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/CreepyMemes/forkify-js/actions/workflows/pages/pages-build-deployment)
 
 [![Static Badge](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&labelColor=white)](https://vide.dev)
 [![Static Badge](https://img.shields.io/badge/Node-339933?style=for-the-badge&logo=node.js&labelColor=white)](https://nodejs.org)
