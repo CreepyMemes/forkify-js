@@ -17,6 +17,8 @@
 
 This is a vanilla js project based on MVC architecture and uses publish-subscribe design pattern for handling events
 
+This app is hosted here on github pages and a demo is avalable [here](https://creepymemes.github.io/forkify-js/)
+
 > [!IMPORTANT]
 > edit `.env` file with your api key generated from https://forkify-api.jonas.io/
 
