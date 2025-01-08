@@ -7,6 +7,7 @@
 [![Static Badge](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&labelColor=white)](https://vide.dev)
 [![Static Badge](https://img.shields.io/badge/Node-339933?style=for-the-badge&logo=node.js&labelColor=white)](https://nodejs.org)
 [![Static Badge](https://img.shields.io/badge/Javascript-F0DB4F?style=for-the-badge&logo=javascript&labelColor=white)](https://javascript.com)
+[![Static Badge](https://img.shields.io/badge/Sass-CF649A?style=for-the-badge&logo=sass&labelColor=white)](https://sass-lang.com)
 [![Static Badge](https://img.shields.io/badge/Lodash-3492ff?style=for-the-badge&logo=lodash&logoColor=4930BD&labelColor=white)](https://eslint.org)
 [![Static Badge](https://img.shields.io/badge/Eslint-4930BD?style=for-the-badge&logo=eslint&logoColor=4930BD&labelColor=white)](https://eslint.org)
 [![Static Badge](https://img.shields.io/badge/Prettier-C596C7?style=for-the-badge&logo=prettier&labelColor=white)](https://prettier.io)
