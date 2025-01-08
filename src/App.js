@@ -3,7 +3,7 @@ import Header from './components/header/Header';
 import Recipe from './components/recipe/Recipe';
 import Search from './components/search/Search';
 import SearchResults from './components/search-results/SearchResults';
-import AddRecipeWindow from './components/add-recipe-window/AddRecipeWindow';
+import AddRecipe from './components/add-recipe/AddRecipe';
 import Pagination from './components/pagination/Pagination';
 import CopyRight from './components/common/Copyright';
 
@@ -16,6 +16,7 @@ class App extends Component {
     this.searchResults = new SearchResults(this.container.querySelector('.results'));
     this.pagination = new Pagination(this.container.querySelector('.pagination'));
     this.header = new Header(this.container.querySelector('.header'));
+    this.addRecipe = new AddRecipe(this.container.querySelector('.add-recipe'));
   }
 
   static markup() {
@@ -33,7 +34,7 @@ class App extends Component {
           ${Recipe.markup({ recipe: null, status: 'idle' })}
         </div>
 
-        ${AddRecipeWindow.markup()}
+        ${AddRecipe.markup({ visibility: false })}
       </div>
     `;
   }

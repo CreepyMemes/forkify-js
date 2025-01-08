@@ -34,6 +34,10 @@ class Header extends Component {
       </header>
     `;
   }
+
+  subscribe(handler) {
+    this._subscribe('click', handler, this.container.querySelector('.nav__btn--add-recipe'));
+  }
 }
 
 export default Header;

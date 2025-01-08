@@ -59,14 +59,28 @@ const controlBookmark = () => {
   app.header.render(model.state.header);
 };
 
+// Toggles the add recipe popup visibility and rerenders it
+const controlToggleAddRecipe = () => {
+  model.setToggleRecipeVisible();
+  app.addRecipe.render(model.state.addRecipe);
+};
+
+// Retrieves the submitted form data and relays it to model
+const controlAddRecipe = (data) => {
+  console.log(data);
+};
+
 // Main function
 const main = () => {
   app.render();
+
   app.recipe.subscribe(controlRecipies);
   app.recipe.details.subscribeServings(controlServings);
   app.recipe.details.subscribeBookmark(controlBookmark);
   app.search.subscribe(controlSearchResults);
   app.pagination.subscribe(controlPagination);
+  [app.header, app.addRecipe].forEach((component) => component.subscribe(controlToggleAddRecipe));
+  app.addRecipe.upload.subscribe(controlAddRecipe);
 };
 
 main();

@@ -22,6 +22,10 @@ export const state = {
   header: {
     bookmarks: [],
   },
+
+  addRecipe: {
+    visibility: false,
+  },
 };
 
 // Update the recipe status state to loading
@@ -127,6 +131,11 @@ const deleteBookmark = function (recipeId) {
 export const Bookmark = function ({ recipe }) {
   state.header.bookmarks = isBookmarked(recipe.id) ? deleteBookmark(recipe.id) : addBookmark(recipe);
   persistBookmarks();
+};
+
+// Toggles the add recipe visibility state
+export const setToggleRecipeVisible = function () {
+  state.addRecipe.visibility = !state.addRecipe.visibility;
 };
 
 // Initialize local storage data, (in this case only bookmarks)
