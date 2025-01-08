@@ -3,6 +3,7 @@ import eslint from 'vite-plugin-eslint';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/forkify-js/',
   plugins: [
     eslint({
       failOnError: true, // Stop build on ESLint errors
