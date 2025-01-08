@@ -26,7 +26,7 @@ export default [
 
     rules: {
       ...js.configs.recommended.rules,
-      'no-unused-vars': 'warn',
+      'no-unused-vars': ['warn', { argsIgnorePattern: '^_$', varsIgnorePattern: '^_$' }],
       'no-useless-catch': 'warn',
     },
   },
