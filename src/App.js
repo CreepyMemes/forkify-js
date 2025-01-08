@@ -8,8 +8,8 @@ import Pagination from './components/pagination/Pagination';
 import CopyRight from './components/common/Copyright';
 
 class App extends Component {
-  render() {
-    super.render();
+  render(props) {
+    super.render(props);
 
     this.recipe = new Recipe(this.container.querySelector('.recipe'));
     this.search = new Search(this.container.querySelector('.search'));
@@ -19,22 +19,23 @@ class App extends Component {
     this.addRecipe = new AddRecipe(this.container.querySelector('.add-recipe'));
   }
 
-  static markup() {
+  static markup(state) {
+    console.log(state);
     return /* html */ `
       <div class="root">
         <div class="container">
-          ${Header.markup({ bookmarks: [] })}
+          ${Header.markup(state.header)}
 
           <div class="search-results">
-            ${SearchResults.markup({ results: null, status: 'idle' })}
-            ${Pagination.markup({ page: 0, pages: 0 })}
+            ${SearchResults.markup(state.search.searchResults)}
+            ${Pagination.markup(state.search.pagination)}
             ${CopyRight.markup()}
           </div>
 
-          ${Recipe.markup({ recipe: null, status: 'idle' })}
+          ${Recipe.markup(state.recipe)}
         </div>
 
-        ${AddRecipe.markup({ visibility: false })}
+        ${AddRecipe.markup(state.addRecipe)}
       </div>
     `;
   }

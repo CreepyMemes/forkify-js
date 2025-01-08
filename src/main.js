@@ -81,7 +81,7 @@ const controlAddRecipe = async (data) => {
 
 // Main function
 const main = () => {
-  app.render();
+  app.render(model.state); // Initial app render with default state
 
   app.recipe.subscribe(controlRecipies);
   app.recipe.details.subscribeServings(controlServings);

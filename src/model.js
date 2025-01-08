@@ -3,7 +3,7 @@ const { VITE_API_URL, VITE_API_KEY, VITE_RES_PER_PAGE } = import.meta.env;
 
 export const state = {
   recipe: {
-    recipe: {},
+    recipe: null,
     status: 'idle',
   },
 
@@ -12,7 +12,7 @@ export const state = {
     results: [],
     resultsPerPage: +VITE_RES_PER_PAGE,
     searchResults: {
-      results: [],
+      results: null,
       status: 'idle',
     },
     pagination: {
@@ -186,7 +186,6 @@ export const uploadRecipe = async function (data) {
 // Initialize local storage data, (in this case only bookmarks)
 const init = function () {
   const storage = localStorage.getItem('bookmarks');
-
   if (storage) state.header.bookmarks = JSON.parse(storage);
 };
 
