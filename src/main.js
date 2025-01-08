@@ -66,8 +66,12 @@ const controlToggleAddRecipe = () => {
 };
 
 // Retrieves the submitted form data and relays it to model
-const controlAddRecipe = (data) => {
-  console.log(data);
+const controlAddRecipe = async (data) => {
+  try {
+    await model.uploadRecipe(data);
+  } catch (error) {
+    alert(error);
+  }
 };
 
 // Main function

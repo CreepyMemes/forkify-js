@@ -12,7 +12,7 @@ class AddRecipeUpload extends Component {
           <label>URL</label>
           <input value="TEST" required name="sourceUrl" type="text" />
           <label>Image URL</label>
-          <input value="TEST" required name="image" type="text" />
+          <input value="TEST" required name="imageUrl" type="text" />
           <label>Publisher</label>
           <input value="TEST" required name="publisher" type="text" />
           <label>Prep time</label>

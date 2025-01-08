@@ -138,6 +138,46 @@ export const setToggleRecipeVisible = function () {
   state.addRecipe.visibility = !state.addRecipe.visibility;
 };
 
+// Parses the raw form data ingredients to construct an object out of them
+const parseIngredients = function (recipe) {
+  const ingredients = Object.entries(recipe)
+    .filter(([key, value]) => key.startsWith('ingredient') && value)
+    .map(([_, value]) => {
+      if ((value.match(/,/g) || []).length !== 2) {
+        throw new Error('Wrong ingredient format, Please use the correct format :)');
+      }
+
+      const [quantity, unit, description] = value.split(',').map((s) => s.trim());
+
+      return { quantity: quantity ? +quantity : null, unit, description };
+    });
+
+  return ingredients;
+};
+
+// Construct the recipe object to be sent to the API
+const getRecipeObject = function (recipe) {
+  return {
+    publisher: recipe.publisher,
+    ingredients: parseIngredients(recipe),
+    source_url: recipe.sourceUrl,
+    image_url: recipe.imageUrl,
+    title: recipe.title,
+    servings: +recipe.servings,
+    cooking_time: +recipe.cookingTime,
+  };
+};
+
+export const uploadRecipe = async function (data) {
+  try {
+    const recipe = getRecipeObject(data);
+    console.log(recipe);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 // Initialize local storage data, (in this case only bookmarks)
 const init = function () {
   const storage = localStorage.getItem('bookmarks');
